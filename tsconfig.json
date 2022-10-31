@@ -4,5 +4,8 @@
             "es2019"
         ],
         "experimentalDecorators": true
-    }
+    },
+    "include": [
+        "sources/src/**/*"
+    ],
 }
