@@ -10,9 +10,10 @@ function doPost(e: any) {
 
     let reply_messages: any[];
     switch (user_message) {
-        case "/getUserId":
-            reply_messages = [user_id];
-            writeLog(date, user_id, "getUserId");
+        case "/register":
+            register(user_id);
+            reply_messages = ["You are registered."];
+            writeLog(date, user_id, "register");
             break;
 
         case "/getDate":
