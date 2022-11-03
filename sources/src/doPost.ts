@@ -6,7 +6,7 @@ function doPost(e: any) {
     let user_message = json.events[0].message.text;
 
     let date = new Date();
-    let date_str = Utilities.formatDate(date, "JST", "yyyy/MM/dd HH:mm:ss");
+    let date_str = Utilities.formatDate(date, "JST", "yyyy-MM-dd HH:mm:ss");
 
     let reply_messages: any[];
     switch (user_message) {
