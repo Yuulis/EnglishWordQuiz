@@ -1,4 +1,4 @@
-function getValuesFromSheet(sheet_id: any, query: any) {
+function getValuesOfSheet(sheet_id: string, query: GetValueQuery) {
     let response = Sheets.Spreadsheets.Values.batchGet(sheet_id, query).valueRanges;
 
     let array = new Array();
@@ -22,6 +22,6 @@ function getValuesFromSheet(sheet_id: any, query: any) {
 }
 
 
-function UpdateValuesInSheet(sheet_id: any, query: any) {
-
+function SetValuesOfSheet(sheet_id: any, query: any) {
+    Sheets.Spreadsheets.Values.batchUpdate(sheet_id, query);
 }
