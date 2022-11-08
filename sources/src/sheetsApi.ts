@@ -25,3 +25,8 @@ function getValuesOfSheet(sheet_id: string, query: GetValueQuery) {
 function SetValuesOfSheet(sheet_id: any, query: any) {
     Sheets.Spreadsheets.Values.batchUpdate(sheet_id, query);
 }
+
+
+function InsertLInesToSheet(sheet_id: any, query: any) {
+    Sheets.Spreadsheets.batchUpdate(sheet_id, query);
+}

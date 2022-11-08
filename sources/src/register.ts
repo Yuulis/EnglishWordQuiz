@@ -1,21 +1,3 @@
-type ValueRange = {
-    "range": string,
-    "values": [
-        string[]
-    ]
-}
-
-type GetValueQuery = {
-    "ranges": string[],
-    "majorDimension": string,
-}
-
-type SetValueQuery = {
-    "valueInputOption": string,
-    "data": ValueRange[]
-}
-
-
 function register(user_id: any) {
     let sheet_id_userList = PropertiesService.getScriptProperties().getProperty("SPREADSHEET_ID_USERLIST");
     let query1: GetValueQuery = {
