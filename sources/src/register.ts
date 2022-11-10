@@ -22,13 +22,50 @@ function register(user_id: any) {
         "valueInputOption": "USER_ENTERED",
         "data": [
             {
+                "majorDimension": "ROWS",
                 "range": "general!B1",
-                "values": user_id
+                "values": [
+                    [
+                        user_id
+                    ]
+                ]
             }
         ]
     };
-
     SetValuesOfSheet(copied_sheet_id, query2);
+
+    let query3: InsertLineQuery = {
+        "requests": [
+            {
+                "insertDimension": {
+                    "range": {
+                        "sheetId": 0,
+                        "dimension": "ROWS",
+                        "startIndex": 1,
+                        "endIndex": 2
+                    },
+                    "inheritFromBefore": false
+                }
+            }
+        ]
+    };
+    InsertLinesToSheet(sheet_id_userList, query3);
+
+    query2 = {
+        "valueInputOption": "USER_ENTERED",
+        "data": [
+            {
+                "majorDimension": "ROWS",
+                "range": "list!A2",
+                "values": [
+                    [
+                        user_id
+                    ]
+                ]
+            }
+        ]
+    };
+    SetValuesOfSheet(sheet_id_userList, query2);
 
     return "Your registration was successful."
 }

@@ -1,3 +1,4 @@
+// Sheetから値を読み取り
 function getValuesOfSheet(sheet_id: string, query: GetValueQuery) {
     let response = Sheets.Spreadsheets.Values.batchGet(sheet_id, query).valueRanges;
 
@@ -21,12 +22,12 @@ function getValuesOfSheet(sheet_id: string, query: GetValueQuery) {
     return array;
 }
 
-
+// Sheetに値を書き込み
 function SetValuesOfSheet(sheet_id: any, query: any) {
-    Sheets.Spreadsheets.Values.batchUpdate(sheet_id, query);
+    Sheets.Spreadsheets.Values.batchUpdate(query, sheet_id);
 }
 
-
-function InsertLInesToSheet(sheet_id: any, query: any) {
-    Sheets.Spreadsheets.batchUpdate(sheet_id, query);
+// Sheetに行を挿入
+function InsertLinesToSheet(sheet_id: any, query: any) {
+    Sheets.Spreadsheets.batchUpdate(query, sheet_id);
 }

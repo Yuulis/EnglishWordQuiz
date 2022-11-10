@@ -1,3 +1,4 @@
+// LINEへの送信
 function replyToLine(reply_token: any, reply_messages: any) {
     const LINE_ACCESS_TOKEN = PropertiesService.getScriptProperties().getProperty("LINE_ACCESS_TOKEN");
 

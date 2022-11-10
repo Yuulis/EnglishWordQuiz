@@ -1,4 +1,6 @@
+// ===== For Sheets API =====
 type ValueRange = {
+    "majorDimension": String
     "range": string,
     "values": [
         string[]
@@ -6,15 +8,17 @@ type ValueRange = {
 }
 
 type DimensionRange = {
-    "sheetId": String,
+    "sheetId": 0,
     "dimension": String,
     "startIndex": Number,
     "endIndex": Number
 }
 
 type Request = {
-    "range": DimensionRange,
-    "inheritFromBefore": Boolean
+    "insertDimension": {
+        "range": DimensionRange,
+        "inheritFromBefore": Boolean
+    }
 }
 
 type GetValueQuery = {
@@ -28,5 +32,5 @@ type SetValueQuery = {
 }
 
 type InsertLineQuery = {
-    "requests": Request
+    "requests": Request[]
 }

@@ -1,4 +1,6 @@
+// LINEでユーザからメッセージが送信されたとき
 function doPost(e: any) {
+    // データの読み取り
     let json = JSON.parse(e.postData.contents);
 
     let reply_token = json.events[0].replyToken;
@@ -8,6 +10,7 @@ function doPost(e: any) {
     let date = new Date();
     let date_str = Utilities.formatDate(date, "JST", "yyyy-MM-dd HH:mm:ss");
 
+    // コマンド検知
     let reply_messages: any[];
     switch (user_message) {
         case "/register":
@@ -27,5 +30,6 @@ function doPost(e: any) {
             break;
     }
 
+    // LINEへの応答
     replyToLine(reply_token, reply_messages);
 }
