@@ -3,18 +3,10 @@ function getValuesOfSheet(sheet_id: string, query: GetValueQuery) {
     let response = Sheets.Spreadsheets.Values.batchGet(sheet_id, query).valueRanges;
 
     let array = new Array();
-    if (query.majorDimension == "ROWS") {
-        for (const valueRange of response) {
-            for (const value of valueRange.values) {
-                array.push(value);
-            }
-        }
-    } else {
-        for (const valueRange of response) {
-            for (const value of valueRange.values) {
-                for (const item of value) {
-                    array.push(item);
-                }
+    for (let i in response) {
+        for (let j in response[i]["values"]) {
+            for (const item of response[i]["values"][j]) {
+                array.push(item);
             }
         }
     }

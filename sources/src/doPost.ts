@@ -16,17 +16,17 @@ function doPost(e: any) {
         case "/register":
             let result = register(user_id);
             reply_messages = [result];
-            writeLog(date, user_id, "register");
+            writeLog(date_str, user_id, "register");
             break;
 
         case "/getDate":
             reply_messages = [date_str];
-            writeLog(date, user_id, "getDate");
+            writeLog(date_str, user_id, "getDate");
             break;
 
         default:
             reply_messages = [user_message];
-            writeLog(date, user_id, "reply");
+            writeLog(date_str, user_id, "reply");
             break;
     }
 

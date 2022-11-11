@@ -1,5 +1,5 @@
 // ログの記録
-function writeLog(date: any = null, user_id: any = null, command: any = null, message: any = null) {
+function writeLog(date: any = "", user_id: any = "", command: any = "", message: any = "") {
     const SPREADSHEET_ID_LOG = PropertiesService.getScriptProperties().getProperty("SPREADSHEET_ID_LOG");
 
     let query1: InsertLineQuery = {
