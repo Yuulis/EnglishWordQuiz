@@ -19,14 +19,9 @@ function doPost(e: any) {
             writeLog(date_str, user_id, "register");
             break;
 
-        case "/getDate":
-            reply_messages = [date_str];
-            writeLog(date_str, user_id, "getDate");
-            break;
-
         default:
-            reply_messages = [user_message];
-            writeLog(date_str, user_id, "reply");
+            reply_messages = ["This command is not unable to use."];
+            writeLog(date_str, user_id, "unable command");
             break;
     }
 
