@@ -19,9 +19,15 @@ function doPost(e: any) {
             writeLog(date_str, user_id, "register");
             break;
 
+        case "/unregister":
+            result = unregister(user_id);
+            reply_messages = [result];
+            writeLog(date_str, user_id, "unregister");
+            break;
+
         default:
-            reply_messages = ["This command is not unable to use."];
-            writeLog(date_str, user_id, "unable command");
+            reply_messages = ["This command is not undefined."];
+            writeLog(date_str, user_id, "undefined command");
             break;
     }
 

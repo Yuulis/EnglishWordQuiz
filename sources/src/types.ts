@@ -15,9 +15,12 @@ type DimensionRange = {
 }
 
 type Request = {
-    "insertDimension": {
+    "insertDimension"?: {
         "range": DimensionRange,
         "inheritFromBefore": Boolean
+    },
+    "deleteDimension"?: {
+        "range": DimensionRange
     }
 }
 
@@ -31,6 +34,6 @@ type SetValueQuery = {
     "data": ValueRange[]
 }
 
-type InsertLineQuery = {
+type UpdateQuery = {
     "requests": Request[]
 }

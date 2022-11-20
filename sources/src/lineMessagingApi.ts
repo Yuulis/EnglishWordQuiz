@@ -24,5 +24,6 @@ function replyToLine(reply_token: any, reply_messages: any) {
         "payload": JSON.stringify(payload),
     };
 
+    // 送信
     return UrlFetchApp.fetch(url, options);
 }
