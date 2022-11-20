@@ -12,23 +12,38 @@ function doPost(e: any) {
 
     // コマンド検知
     let reply_messages: any[];
-    switch (user_message) {
-        case "/register":
-            let result = register(user_id);
-            reply_messages = [result];
-            writeLog(date_str, user_id, "register");
-            break;
+    let result;
 
-        case "/unregister":
-            result = unregister(user_id);
-            reply_messages = [result];
-            writeLog(date_str, user_id, "unregister");
-            break;
+    // ユーザー未登録時
+    if (isRegistered(user_id) == -1) {
+        switch (user_message) {
+            case "/register":
+                result = register(user_id);
+                reply_messages = [result];
+                writeLog(date_str, user_id, "register");
+                break;
 
-        default:
-            reply_messages = ["This command is not undefined."];
-            writeLog(date_str, user_id, "undefined command");
-            break;
+            default:
+                reply_messages = ["This command is not undefined."];
+                writeLog(date_str, user_id, "undefined command");
+                break;
+        }
+    }
+
+    // ユーザー登録時
+    else {
+        switch (user_message) {
+            case "/unregister":
+                result = unregister(user_id);
+                reply_messages = [result];
+                writeLog(date_str, user_id, "unregister");
+                break;
+
+            default:
+                reply_messages = ["This command is not undefined."];
+                writeLog(date_str, user_id, "undefined command");
+                break;
+        }
     }
 
     // LINEへの応答

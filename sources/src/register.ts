@@ -1,18 +1,6 @@
 // ユーザー登録
 function register(user_id: any) {
     let sheet_id_userList = PropertiesService.getScriptProperties().getProperty("SPREADSHEET_ID_USERLIST");
-    let query1: GetValueQuery = {
-        "ranges": [
-            "list!A2:A"
-        ],
-        "majorDimension": "ROWS"
-    };
-
-    // userListに既に存在するならば、処理打ち切り
-    let users_list = getValuesOfSheet(sheet_id_userList, query1);
-    if (users_list.indexOf(user_id) != -1) {
-        return "You are already registered."
-    }
 
     // userData_masterのコピー
     let original_sheet = DriveApp.getFileById(PropertiesService.getScriptProperties().getProperty("SPREADSHEET_ID_USERDATA_MASTER"));
@@ -72,42 +60,31 @@ function register(user_id: any) {
     };
     SetValuesOfSheet(sheet_id_userList, query2);
 
-    return "Successfully registered."
+    return "Successfully registered.";
 }
 
 
 // ユーザー登録解除
 function unregister(user_id: any) {
     let sheet_id_userList = PropertiesService.getScriptProperties().getProperty("SPREADSHEET_ID_USERLIST");
-    let query1: GetValueQuery = {
-        "ranges": [
-            "list!A2:A"
-        ],
-        "majorDimension": "ROWS"
-    };
 
     // userListから削除
-    let users_list = getValuesOfSheet(sheet_id_userList, query1);
-    let idx = users_list.indexOf(user_id);
-    if (idx == -1) {
-        return "You've not been registered yet."
-    } else {
-        let query: UpdateQuery = {
-            "requests": [
-                {
-                    "deleteDimension": {
-                        "range": {
-                            "sheetId": 0,
-                            "dimension": "ROWS",
-                            "startIndex": idx + 1,
-                            "endIndex": idx + 2
-                        }
+    let idx = isRegistered(user_id);
+    let query: UpdateQuery = {
+        "requests": [
+            {
+                "deleteDimension": {
+                    "range": {
+                        "sheetId": 0,
+                        "dimension": "ROWS",
+                        "startIndex": idx + 1,
+                        "endIndex": idx + 2
                     }
-                },
-            ]
-        }
-        UpdateSheet(sheet_id_userList, query);
+                }
+            },
+        ]
     }
+    UpdateSheet(sheet_id_userList, query);
 
     // userDataファイル削除
     let folder_userdata = DriveApp.getFolderById(PropertiesService.getScriptProperties().getProperty("FOLDER_USERDATA_ID"));
@@ -120,5 +97,21 @@ function unregister(user_id: any) {
         }
     }
 
-    return "Successfully unregistered. Thank you for using!"
+    return "Successfully unregistered. Thank you for using!";
+}
+
+
+// ユーザー登録されているか確認する
+function isRegistered(user_id: any) {
+    let sheet_id_userList = PropertiesService.getScriptProperties().getProperty("SPREADSHEET_ID_USERLIST");
+    let query1: GetValueQuery = {
+        "ranges": [
+            "list!A2:A"
+        ],
+        "majorDimension": "ROWS"
+    };
+
+    let users_list = getValuesOfSheet(sheet_id_userList, query1);
+    let idx = users_list.indexOf(user_id);
+    return idx;
 }
