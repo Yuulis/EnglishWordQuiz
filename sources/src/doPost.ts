@@ -10,7 +10,11 @@ function doPost(e: any) {
     let date = new Date();
     let date_str = Utilities.formatDate(date, "JST", "yyyy-MM-dd HH:mm:ss");
 
-    // コマンド検知
+    // スラッシュコマンドのみ検知
+    if (user_message[0] !== "/") {
+        return;
+    }
+
     let reply_messages: any[];
     let result;
 
@@ -37,6 +41,12 @@ function doPost(e: any) {
                 result = unregister(user_id);
                 reply_messages = [result];
                 writeLog(date_str, user_id, "unregister");
+                break;
+
+            case "/random":
+                result = selectWords(user_id);
+                reply_messages = [result];
+                writeLog(date_str, user_id, "random");
                 break;
 
             default:

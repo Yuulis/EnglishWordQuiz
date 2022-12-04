@@ -112,6 +112,6 @@ function isRegistered(user_id: any) {
     };
 
     let users_list = getValuesOfSheet(sheet_id_userList, query1);
-    let idx = users_list.indexOf(user_id);
+    let idx = users_list[0].indexOf(user_id);
     return idx;
 }

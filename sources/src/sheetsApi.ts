@@ -4,11 +4,14 @@ function getValuesOfSheet(sheet_id: string, query: GetValueQuery) {
 
     let array = new Array();
     for (let i in response) {
+        let temp = new Array();
         for (let j in response[i]["values"]) {
             for (const item of response[i]["values"][j]) {
-                array.push(item);
+                temp.push(item);
             }
         }
+
+        array.push(temp);
     }
 
     return array;
